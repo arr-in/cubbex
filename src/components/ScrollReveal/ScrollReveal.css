@@ -1,0 +1,77 @@
+.scroll-reveal-spacer {
+    --reveal-color: rgba(255, 255, 255, 0.92);
+    margin: 0;
+    width: 100%;
+    background: #000;
+    position: relative;
+    /* Cinematic narrative space */
+    height: 200vh;
+}
+
+.scroll-reveal-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6vw;
+    overflow: hidden;
+}
+
+.scroll-reveal-text {
+    font-family: var(--font-display), sans-serif;
+    font-size: clamp(1.6rem, 4vw, 3rem);
+    line-height: 1.4;
+    font-weight: 600;
+    color: var(--reveal-color);
+    max-width: 900px;
+    text-align: center;
+    margin: 0;
+}
+
+.word {
+    display: inline-block;
+    will-change: opacity, transform, filter;
+}
+
+/* Base state before GSAP kicks in or if JS fails */
+.word {
+    opacity: 0.12;
+}
+
+.scroll-reveal-cta {
+    margin-top: 2rem;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.scroll-reveal-cta.visible {
+    opacity: 1;
+}
+
+.cta-button {
+    background: white;
+    color: black;
+    padding: 0.8rem 2rem;
+    border-radius: 99px;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    background: #f0f0f0;
+}
+
+@media (max-width: 480px) {
+    .scroll-reveal-text {
+        line-height: 1.6;
+        text-align: left;
+    }
+}
