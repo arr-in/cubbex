@@ -6,6 +6,9 @@ import UnicornStudio from "unicornstudio-react"
 import { Loader2 } from "lucide-react"
 import CubexSubtitle from "./CubexSubtitle"
 
+/** Hero background video: put your file in public/ and use its path here (e.g. "/my-video.mp4") */
+const HERO_VIDEO_SRC = "/cube-explosion.mp4"
+
 export default function CubexHero() {
     const containerRef = useRef<HTMLDivElement>(null)
     const videoRef = useRef<HTMLVideoElement>(null)
@@ -212,7 +215,7 @@ export default function CubexHero() {
                         playsInline
                         preload="auto"
                     >
-                        <source src="/cube-explosion.mp4" type="video/mp4" />
+                        <source src={HERO_VIDEO_SRC} type="video/mp4" />
                     </video>
 
                     {/* Vignette / Edge Blending */}
