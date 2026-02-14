@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, DM_Sans } from "next/font/google";
+import CustomCursor from "@/components/CustomCursor/CustomCursor";
 import "./globals.css";
 
 const inter = Inter({
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${dmSans.variable} antialiased`}
       >
+        <CustomCursor />
         {children}
       </body>
     </html>

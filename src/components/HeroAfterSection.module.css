@@ -1,0 +1,189 @@
+.container {
+    position: relative;
+    width: 100%;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+    overflow: hidden;
+    padding: 4rem 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .container {
+        min-height: 50vh;
+        padding: 3rem 1rem;
+    }
+}
+
+/* Canvas Particle Field */
+.canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Fallback gradient for reduced motion */
+.fallbackGradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(125, 211, 200, 0.03) 0%,
+        transparent 70%
+    );
+    z-index: 1;
+}
+
+/* Focal Card */
+.focalCard {
+    position: relative;
+    z-index: 10;
+    max-width: 520px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.5rem;
+    padding: 3rem 2.5rem;
+    box-shadow: 
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
+        0 20px 40px -12px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.focalCard:hover {
+    border-color: rgba(72, 209, 255, 0.12);
+    box-shadow: 
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
+        0 0 0 1px rgba(72, 209, 255, 0.08),
+        0 24px 48px -12px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .focalCard {
+        padding: 2rem 1.5rem;
+        max-width: 100%;
+    }
+}
+
+/* Card ambient glow */
+.cardGlow {
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(
+        circle,
+        rgba(125, 211, 200, 0.08) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Card Content */
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+}
+
+/* Icon Wrapper */
+.iconWrapper {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.cubeIcon {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 20px rgba(72, 209, 255, 0.2));
+}
+
+/* Card Title */
+.cardTitle {
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 700;
+    color: white;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+/* Card Description */
+.cardDescription {
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.6;
+    max-width: 400px;
+    margin: 0;
+}
+
+/* CTA Button */
+.ctaButton {
+    margin-top: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.75rem;
+    background: linear-gradient(135deg, #48D1FF 0%, #7DD3C8 100%);
+    color: #000;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 
+        0 0 0 0 rgba(72, 209, 255, 0),
+        0 4px 12px -2px rgba(72, 209, 255, 0.3);
+}
+
+.ctaButton:hover {
+    box-shadow: 
+        0 0 0 4px rgba(72, 209, 255, 0.12),
+        0 8px 24px -4px rgba(72, 209, 255, 0.4);
+    transform: translateY(-1px);
+}
+
+.ctaButton:active {
+    transform: translateY(0);
+}
+
+.ctaButton:focus-visible {
+    outline: 2px solid #48D1FF;
+    outline-offset: 3px;
+}
+
+.ctaText {
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+}
+
+.ctaArrow {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+/* Accessibility: Screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}

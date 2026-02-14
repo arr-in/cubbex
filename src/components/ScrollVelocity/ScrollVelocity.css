@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+
+
+.scroll-velocity-section {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(135deg, #0a4d5c 0%, #0d2838 100%);
+  padding: 0;
+  margin: 3rem 0;
+  overflow: hidden;
+}
+
+.scrolling-text-wrapper {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 2rem 0;
+  margin: 0;
+}
+
+.scrolling-text-track {
+  display: flex;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.scrolling-text-content {
+  font-family: 'Archivo Black', system-ui, sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding-right: 0;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.9);
+  white-space: pre;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .scroll-velocity-section {
+    margin: 4rem 0;
+  }
+  
+  .scrolling-text-wrapper {
+    padding: 2.5rem 0;
+  }
+  
+  .scrolling-text-content {
+    font-weight: 900;
+    -webkit-text-stroke: 0.8px rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .scroll-velocity-section {
+    margin: 5rem 0;
+  }
+  
+  .scrolling-text-wrapper {
+    padding: 3rem 0;
+  }
+  
+  .scrolling-text-content {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .scroll-velocity-section {
+    margin: 2rem 0;
+  }
+  
+  .scrolling-text-wrapper {
+    padding: 1.5rem 0;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .scrolling-text-content {
+    animation: none;
+  }
+}

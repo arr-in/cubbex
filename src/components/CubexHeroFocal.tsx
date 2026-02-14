@@ -6,7 +6,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
 const PHRASES = ["Scan.", "Solve.", "Optimize."]
 
 const GRADIENT = "linear-gradient(135deg, #48D1FF 0%, #7DD3C8 35%, #B8A9FF 100%)"
-const LABEL = "AI-Powered Solving"
+const LABEL = "AI-Powered Rubik's Cube Solving"
 
 export default function CubexHeroFocal() {
     const [index, setIndex] = useState(0)
