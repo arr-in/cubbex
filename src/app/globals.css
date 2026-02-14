@@ -59,3 +59,54 @@ body {
   scrollbar-width: none;
   /* Firefox */
 }
+
+/* --- Hero section: subtle animated texture overlay (above Unicorn, non-interactive) --- */
+.hero-texture-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  pointer-events: none;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-texture-overlay__drift {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  left: -10%;
+  top: -10%;
+  will-change: transform;
+  animation: hero-texture-drift 38s ease-in-out infinite alternate;
+  background: radial-gradient(
+      ellipse 70% 60% at 50% 40%,
+      rgba(72, 209, 255, 0.14) 0%,
+      rgba(72, 209, 255, 0.04) 40%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 50% 70% at 70% 70%,
+      rgba(139, 92, 246, 0.1) 0%,
+      transparent 50%
+    );
+  mix-blend-mode: screen;
+}
+
+.hero-texture-overlay__drift--secondary {
+  animation-duration: 52s;
+  animation-direction: alternate-reverse;
+  background: radial-gradient(
+    ellipse 60% 80% at 30% 60%,
+    rgba(72, 209, 255, 0.08) 0%,
+    transparent 55%
+  );
+}
+
+@keyframes hero-texture-drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(4%, 3%) scale(1.03);
+  }
+}
