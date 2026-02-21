@@ -53,11 +53,11 @@ export default function Home() {
           color="#ffffff"
           flakeSize={0.014}
           minFlakeSize={1.0}
-          pixelResolution={240}
+          pixelResolution={180}
           speed={1.7}
           density={0.3}
           direction={180}
-          brightness={0.9}
+          brightness={0.5}
           depthFade={9.5}
           farPlane={22}
           gamma={0.4545}
