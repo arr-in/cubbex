@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, DM_Sans } from "next/font/google";
 import CustomCursor from "@/components/CustomCursor/CustomCursor";
+import TextCursor from "@/components/TextCursor/TextCursor";
 import "./globals.css";
 
 const inter = Inter({
@@ -29,6 +30,15 @@ export default function RootLayout({
         className={`${inter.variable} ${dmSans.variable} antialiased`}
       >
         <CustomCursor />
+        <TextCursor 
+          text="CUBEX"
+          spacing={130}
+          followMouseDirection={true}
+          randomFloat={true}
+          exitDuration={0.6}
+          removalInterval={40}
+          maxPoints={6}
+        />
         {children}
       </body>
     </html>

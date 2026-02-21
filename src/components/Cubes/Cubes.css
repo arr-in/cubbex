@@ -1,17 +1,21 @@
 :root {
-    --col-gap: 2%;
-    --row-gap: 2%;
+    --col-gap: 3%;
+    --row-gap: 8%;
     --cube-perspective: 99999999px;
-    --cube-face-border: 1px dashed rgba(72, 209, 255, 0.4);
-    --cube-face-bg: #000000;
+    --cube-face-border: 1px solid rgba(72, 209, 255, 0.15);
+    --cube-face-bg: rgba(0, 0, 0, 0.3);
   }
   
   .cubes-wrapper {
     position: relative;
     width: 100%;
-    height: 180px;
-    background: #000000;
+    height: 200px;
+    background: linear-gradient(180deg, #000000 0%, #0a0a1a 50%, #000000 100%);
     overflow: hidden;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid rgba(72, 209, 255, 0.1);
+    border-bottom: 1px solid rgba(72, 209, 255, 0.1);
   }
   
   /* Particle canvas - behind cubes */
@@ -22,6 +26,7 @@
     height: 100%;
     z-index: 0;
     pointer-events: none;
+    opacity: 0.6;
   }
   
   .cubes-scene {
@@ -34,6 +39,7 @@
     perspective: var(--cube-perspective);
     grid-auto-rows: 1fr;
     z-index: 1;
+    padding: 2rem 0;
   }
   
   .cube {
@@ -62,7 +68,8 @@
     justify-content: center;
     background: var(--cube-face-bg);
     border: var(--cube-face-border);
-    opacity: 1;
+    opacity: 0.8;
+    backdrop-filter: blur(2px);
   }
   
   .cubes-wrapper .cube-face--top {
@@ -89,13 +96,21 @@
   /* Tablet */
   @media (max-width: 768px) {
     .cubes-wrapper {
-      height: 120px;
+      height: 150px;
+    }
+    
+    .cubes-scene {
+      padding: 1.5rem 0;
     }
   }
   
   /* Mobile */
   @media (max-width: 480px) {
     .cubes-wrapper {
-      height: 80px;
+      height: 100px;
+    }
+    
+    .cubes-scene {
+      padding: 1rem 0;
     }
   }
