@@ -1,0 +1,82 @@
+/* Hide default cursor */
+* {
+    cursor: none !important;
+  }
+  
+  /* Main cursor dot */
+  .custom-cursor-dot {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #48D1FF;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: screen;
+    box-shadow: 0 0 20px rgba(72, 209, 255, 0.6);
+  }
+  
+  /* 3D Cube follower */
+  .custom-cursor-cube {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+  }
+  
+  .cube-svg {
+    width: 100%;
+    height: 100%;
+    color: #48D1FF;
+    filter: drop-shadow(0 0 10px rgba(72, 209, 255, 0.4));
+  }
+  
+  /* Outer ring on hover */
+  .custom-cursor-ring {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    border: 2px solid #7DD3C8;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: screen;
+  }
+  
+  /* Show default cursor on inputs and textareas */
+  input,
+  textarea,
+  select {
+    cursor: text !important;
+  }
+  
+  /* Mobile: show default cursor */
+  @media (hover: none) and (pointer: coarse) {
+    * {
+      cursor: auto !important;
+    }
+    
+    .custom-cursor-dot,
+    .custom-cursor-cube,
+    .custom-cursor-ring {
+      display: none !important;
+    }
+  }
+  
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .custom-cursor-dot,
+    .custom-cursor-cube,
+    .custom-cursor-ring {
+      display: none !important;
+    }
+    
+    * {
+      cursor: auto !important;
+    }
+  }

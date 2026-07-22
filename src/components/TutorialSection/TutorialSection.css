@@ -1,0 +1,78 @@
+.tutorial-section {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding: 6rem 2rem;
+  background: transparent;
+  overflow: visible;
+}
+
+/* Heading */
+.tutorial-text {
+  text-align: center;
+  max-width: 540px;
+}
+
+.tutorial-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem;
+}
+
+.tutorial-title-accent {
+  background: linear-gradient(135deg, #48D1FF, #7DD3C8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tutorial-description {
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Card wrapper */
+.tutorial-card-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ambient glow behind the card */
+.tutorial-card-wrapper::before {
+  content: '';
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(
+    circle,
+    rgba(72, 209, 255, 0.08) 0%,
+    rgba(125, 211, 200, 0.04) 40%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .tutorial-section {
+    padding: 4rem 1.5rem;
+    gap: 2rem;
+  }
+
+  .tutorial-card-wrapper::before {
+    width: 280px;
+    height: 280px;
+  }
+}
