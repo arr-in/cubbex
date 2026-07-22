@@ -1,36 +1,25 @@
 "use client"
 
 import { useEffect, useState } from 'react'
-import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { motion, useMotionValue } from 'framer-motion'
 import './CustomCursor.css'
 
 export default function CustomCursor() {
   const [isPointer, setIsPointer] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
 
-  const cursorX = useMotionValue(0)
-  const cursorY = useMotionValue(0)
-
-  const springConfig = { damping: 25, stiffness: 200, mass: 0.5 }
-  const cursorXSpring = useSpring(cursorX, springConfig)
-  const cursorYSpring = useSpring(cursorY, springConfig)
-
-  // Cube follows with more lag
-  const cubeX = useMotionValue(0)
-  const cubeY = useMotionValue(0)
-  const cubeSpringConfig = { damping: 20, stiffness: 100, mass: 0.8 }
-  const cubeXSpring = useSpring(cubeX, cubeSpringConfig)
-  const cubeYSpring = useSpring(cubeY, cubeSpringConfig)
+  // Hardware-accelerated instantaneous motion values (zero spring lag)
+  const cursorX = useMotionValue(-100)
+  const cursorY = useMotionValue(-100)
 
   useEffect(() => {
     let prevIsPointer = false
     let prevIsVisible = false
 
     const handleMouseMove = (e: MouseEvent) => {
+      // Split-second 1:1 hardware translation
       cursorX.set(e.clientX)
       cursorY.set(e.clientY)
-      cubeX.set(e.clientX)
-      cubeY.set(e.clientY)
 
       if (!prevIsVisible) {
         prevIsVisible = true
@@ -59,7 +48,7 @@ export default function CustomCursor() {
     const handleMouseLeave = () => setIsVisible(false)
     const handleMouseEnter = () => setIsVisible(true)
 
-    window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('mousemove', handleMouseMove, { passive: true })
     window.addEventListener('mouseleave', handleMouseLeave)
     window.addEventListener('mouseenter', handleMouseEnter)
 
@@ -68,95 +57,43 @@ export default function CustomCursor() {
       window.removeEventListener('mouseleave', handleMouseLeave)
       window.removeEventListener('mouseenter', handleMouseEnter)
     }
-  }, [cursorX, cursorY, cubeX, cubeY])
+  }, [cursorX, cursorY])
 
   if (!isVisible) return null
 
   return (
-    <>
-      {/* Main cursor dot */}
+    <motion.div
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        x: cursorX,
+        y: cursorY,
+        pointerEvents: 'none',
+        zIndex: 99999,
+        willChange: 'transform',
+      }}
+    >
+      {/* High-speed instantaneous cursor ring */}
       <motion.div
         className="custom-cursor-dot"
         style={{
-          left: cursorXSpring,
-          top: cursorYSpring,
+          width: 14,
+          height: 14,
+          borderRadius: '50%',
+          transform: 'translate(-50%, -50%)',
+          pointerEvents: 'none',
         }}
         animate={{
-          scale: isPointer ? 0.5 : 1,
-          opacity: isPointer ? 0.6 : 1,
+          scale: isPointer ? 2.2 : 1,
+          border: isPointer ? '2px solid #007AFF' : '2px solid rgba(255, 255, 255, 0.8)',
+          backgroundColor: isPointer ? 'rgba(0, 122, 255, 0.25)' : 'rgba(255, 255, 255, 0.2)',
+          boxShadow: isPointer
+            ? '0 0 15px rgba(0, 122, 255, 0.8), 0 0 30px rgba(0, 122, 255, 0.4)'
+            : '0 0 8px rgba(255, 255, 255, 0.5)',
         }}
-        transition={{ duration: 0.15 }}
+        transition={{ duration: 0.08, ease: 'linear' }}
       />
-
-      {/* Following 3D cube */}
-      <motion.div
-        className="custom-cursor-cube"
-        style={{
-          left: cubeXSpring,
-          top: cubeYSpring,
-        }}
-        animate={{
-          scale: isPointer ? 1.4 : 1,
-          rotate: isPointer ? 45 : 0,
-        }}
-        transition={{ duration: 0.3 }}
-      >
-        <svg
-          width="40"
-          height="40"
-          viewBox="0 0 40 40"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="cube-svg"
-        >
-          {/* Back face */}
-          <path
-            d="M12 8 L28 8 L28 24 L12 24 Z"
-            stroke="currentColor"
-            strokeWidth="1"
-            opacity="0.3"
-          />
-          
-          {/* Front face */}
-          <path
-            d="M8 16 L24 16 L24 32 L8 32 Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            opacity="0.8"
-          />
-          
-          {/* Connecting edges */}
-          <path d="M12 8 L8 16" stroke="currentColor" strokeWidth="1" opacity="0.4" />
-          <path d="M28 8 L24 16" stroke="currentColor" strokeWidth="1" opacity="0.4" />
-          <path d="M28 24 L24 32" stroke="currentColor" strokeWidth="1" opacity="0.4" />
-          <path d="M12 24 L8 32" stroke="currentColor" strokeWidth="1" opacity="0.4" />
-
-          {/* Center dot */}
-          <circle cx="16" cy="24" r="1.5" fill="currentColor" opacity="0.9">
-            <animate
-              attributeName="opacity"
-              values="0.5;1;0.5"
-              dur="2s"
-              repeatCount="indefinite"
-            />
-          </circle>
-        </svg>
-      </motion.div>
-
-      {/* Outer ring on hover */}
-      {isPointer && (
-        <motion.div
-          className="custom-cursor-ring"
-          style={{
-            left: cursorXSpring,
-            top: cursorYSpring,
-          }}
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 0.4 }}
-          exit={{ scale: 0, opacity: 0 }}
-          transition={{ duration: 0.2 }}
-        />
-      )}
-    </>
+    </motion.div>
   )
 }

@@ -241,7 +241,13 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
     ]);
 
     const handleCTAClick = () => {
-        window.dispatchEvent(new CustomEvent('cubex:playMicro'));
+        if (typeof window !== 'undefined') {
+            window.dispatchEvent(new CustomEvent('cubex:playMicro'));
+            const launchElem = document.getElementById('launch-solver');
+            if (launchElem) {
+                launchElem.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
     };
 
     return (
