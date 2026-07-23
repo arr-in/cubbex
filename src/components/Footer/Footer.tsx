@@ -38,25 +38,25 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Lead Designer & Architect Credit Card */}
-          <div className="footer-architect-card">
-            <div className="architect-header">
-              <span className="architect-label">CREATIVE DIRECTION &amp; SYSTEM ARCHITECTURE</span>
-              <div className="architect-status">
-                <span className="status-ping" />
-                <span className="status-text">ONLINE</span>
+            {/* Lead Designer & Architect Credit Card */}
+            <div className="footer-architect-card">
+              <div className="architect-header">
+                <span className="architect-label">CREATIVE DEVELOPER &amp; ARCHITECT</span>
+                <div className="architect-status">
+                  <span className="status-ping" />
+                  <span className="status-text">ONLINE</span>
+                </div>
               </div>
-            </div>
 
-            <div className="architect-name-wrap">
-              <h3 className="architect-name">ARIN V JAIN</h3>
-              <span className="architect-role-tag">10+ YRS 3D VISION &amp; DESIGN</span>
-            </div>
+              <div className="architect-name-wrap">
+                <h3 className="architect-name">ARIN V JAIN</h3>
+                <span className="architect-role-tag">STUDENT &amp; CREATIVE CODER</span>
+              </div>
 
-            <p className="architect-bio">
-              Architected for extreme performance, mathematical precision, and zero-compromise 
-              Awwwards-level visual luxury.
-            </p>
+              <p className="architect-bio">
+                Crafted with a passion for algorithms, mathematics, and high-performance 
+                Awwwards-grade WebGL 3D web experiences.
+              </p>
 
             <div className="architect-footer-tags">
               <span className="spec-tag">KOCIEMBA 2-PHASE</span>
