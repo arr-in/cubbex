@@ -13,8 +13,8 @@ export default function IntroLoader() {
     // Prevent body scroll during intro loading
     document.body.style.overflow = "hidden";
 
-    const duration = 2400; // 2.4s sleek animation
-    const intervalTime = 24;
+    const duration = 4200; // 4.2s smooth luxury loading
+    const intervalTime = 25;
     const increment = 100 / (duration / intervalTime);
 
     const timer = setInterval(() => {
@@ -25,8 +25,8 @@ export default function IntroLoader() {
           setTimeout(() => {
             setIsComplete(true);
             document.body.style.overflow = "";
-            setTimeout(() => setShouldRender(false), 900);
-          }, 200);
+            setTimeout(() => setShouldRender(false), 950);
+          }, 300);
           return 100;
         }
         return next;
@@ -41,6 +41,13 @@ export default function IntroLoader() {
 
   if (!shouldRender) return null;
 
+  const getTelemetryText = (p: number) => {
+    if (p < 30) return "INITIALIZING KOCIEMBA 2-PHASE TABLES...";
+    if (p < 65) return "CALIBRATING CIELAB VISION MATRIX...";
+    if (p < 98) return "SYNTHESIZING 43 QUINTILLION GEOMETRY...";
+    return "SYSTEM READY";
+  };
+
   return (
     <AnimatePresence>
       {!isComplete && (
@@ -49,7 +56,7 @@ export default function IntroLoader() {
           initial={{ opacity: 1 }}
           exit={{
             clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
-            transition: { duration: 0.85, ease: [0.76, 0, 0.24, 1] },
+            transition: { duration: 0.9, ease: [0.76, 0, 0.24, 1] },
           }}
         >
           {/* Ambient Radial Background Glows */}
@@ -57,11 +64,11 @@ export default function IntroLoader() {
           <div className="intro-bg-glow glow-purple" aria-hidden="true" />
 
           <div className="intro-content-container">
-            {/* 3D Pure CSS Geometric Isometric Rubik's Cube */}
+            {/* 3D Solid 6-Faced Rubik's Cube Model */}
             <div className="cube-3d-wrapper" aria-hidden="true">
               <div className="cube-3d-scene">
                 <div className="cube-3d-object">
-                  {/* Front Face */}
+                  {/* Front Face (Green) */}
                   <div className="cube-face face-front">
                     <span className="sticker sticker--green" />
                     <span className="sticker sticker--white" />
@@ -73,7 +80,19 @@ export default function IntroLoader() {
                     <span className="sticker sticker--yellow" />
                     <span className="sticker sticker--green" />
                   </div>
-                  {/* Right Face */}
+                  {/* Back Face (Blue) */}
+                  <div className="cube-face face-back">
+                    <span className="sticker sticker--blue" />
+                    <span className="sticker sticker--orange" />
+                    <span className="sticker sticker--blue" />
+                    <span className="sticker sticker--white" />
+                    <span className="sticker sticker--blue" />
+                    <span className="sticker sticker--yellow" />
+                    <span className="sticker sticker--blue" />
+                    <span className="sticker sticker--red" />
+                    <span className="sticker sticker--blue" />
+                  </div>
+                  {/* Right Face (Red) */}
                   <div className="cube-face face-right">
                     <span className="sticker sticker--red" />
                     <span className="sticker sticker--blue" />
@@ -85,7 +104,19 @@ export default function IntroLoader() {
                     <span className="sticker sticker--white" />
                     <span className="sticker sticker--red" />
                   </div>
-                  {/* Top Face */}
+                  {/* Left Face (Orange) */}
+                  <div className="cube-face face-left">
+                    <span className="sticker sticker--orange" />
+                    <span className="sticker sticker--yellow" />
+                    <span className="sticker sticker--orange" />
+                    <span className="sticker sticker--green" />
+                    <span className="sticker sticker--orange" />
+                    <span className="sticker sticker--blue" />
+                    <span className="sticker sticker--orange" />
+                    <span className="sticker sticker--white" />
+                    <span className="sticker sticker--orange" />
+                  </div>
+                  {/* Top Face (White) */}
                   <div className="cube-face face-top">
                     <span className="sticker sticker--white" />
                     <span className="sticker sticker--yellow" />
@@ -96,6 +127,18 @@ export default function IntroLoader() {
                     <span className="sticker sticker--white" />
                     <span className="sticker sticker--red" />
                     <span className="sticker sticker--white" />
+                  </div>
+                  {/* Bottom Face (Yellow) */}
+                  <div className="cube-face face-bottom">
+                    <span className="sticker sticker--yellow" />
+                    <span className="sticker sticker--green" />
+                    <span className="sticker sticker--yellow" />
+                    <span className="sticker sticker--red" />
+                    <span className="sticker sticker--yellow" />
+                    <span className="sticker sticker--orange" />
+                    <span className="sticker sticker--yellow" />
+                    <span className="sticker sticker--blue" />
+                    <span className="sticker sticker--yellow" />
                   </div>
                 </div>
               </div>
@@ -123,11 +166,11 @@ export default function IntroLoader() {
               </div>
             </div>
 
-            {/* Telemetry Counter & Progress Bar */}
+            {/* Telemetry Counter & Glowing Progress Bar */}
             <div className="intro-progress-block">
               <div className="progress-info-row">
                 <span className="telemetry-text">
-                  SYNTHESIZING KOCIEMBA 2-PHASE MATRIX...
+                  {getTelemetryText(progress)}
                 </span>
                 <span className="progress-percentage">
                   {Math.floor(progress).toString().padStart(2, "0")}%
@@ -138,7 +181,9 @@ export default function IntroLoader() {
                 <div
                   className="progress-bar-fill"
                   style={{ width: `${progress}%` }}
-                />
+                >
+                  <span className="progress-fill-glow-head" />
+                </div>
               </div>
             </div>
           </div>
