@@ -8,6 +8,7 @@ import ScrollReveal from "@/components/ScrollReveal/ScrollReveal";
 import StatsSection from "@/components/StatsSection/StatsSection";
 import HowItWorks from "@/components/HowItWorks/HowItWorks";
 import LaunchSolverSection from "@/components/LaunchSolverSection/LaunchSolverSection";
+import Footer from "@/components/Footer/Footer";
 
 // Dynamically import PixelSnow to avoid SSR issues with WebGL
 const PixelSnow = dynamic(() => import("@/components/PixelSnow/PixelSnow"), {
@@ -106,6 +107,8 @@ export default function Home() {
         <div className="section-divider" aria-hidden="true" />
 
         <LaunchSolverSection />
+
+        <Footer />
       </div>
     </main>
   );
