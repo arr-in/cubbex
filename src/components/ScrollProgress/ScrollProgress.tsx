@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import "./ScrollProgress.css";
 
 export default function ScrollProgress() {
+  const pathname = usePathname();
   const [scrollPercent, setScrollPercent] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -28,6 +30,9 @@ export default function ScrollProgress() {
 
     return () => unsubscribe();
   }, [percentage]);
+
+  // Hide progress bar & HUD pill completely on non-homepage routes (e.g. /solve)
+  if (pathname !== "/") return null;
 
   return (
     <>
